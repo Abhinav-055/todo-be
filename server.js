@@ -45,9 +45,12 @@ app.use(taskRoutes); // Ensure that the task routes can be accessed
 
 
 // Schedule deadline checks to run daily at 9 AM
+// This will run at 9 AM IST
 cron.schedule('0 9 * * *', () => {
-  console.log('Running daily deadline check...');
+  console.log('Running daily deadline check in IST...');
   deadlineNotifier.checkDeadlines();
+}, {
+  timezone: "Asia/Kolkata"
 });
 
 cron.schedule('*/1 * * * *', () => {
